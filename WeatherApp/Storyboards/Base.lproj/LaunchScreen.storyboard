@@ -17,20 +17,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a69-FR-fsm">
-                                <rect key="frame" x="82.666666666666671" y="397.66666666666669" width="224.66666666666663" height="49"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="highlightedColor" systemColor="labelColor"/>
-                                <color key="shadowColor" red="0.96078431610000004" green="0.96078431610000004" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <size key="shadowOffset" width="1" height="-1"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="TLZ-bM-hPs">
+                                <rect key="frame" x="82.666666666666686" y="313.66666666666669" width="224.66666666666663" height="217.00000000000006"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_white_day_rain" translatesAutoresizingMaskIntoConstraints="NO" id="Soj-vA-xOD">
+                                        <rect key="frame" x="12.333333333333329" y="0.0" width="200" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="1ZL-JD-zk9"/>
+                                            <constraint firstAttribute="height" constant="150" id="rET-5N-rIh"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a69-FR-fsm">
+                                        <rect key="frame" x="0.0" y="168" width="224.66666666666666" height="49"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="highlightedColor" systemColor="labelColor"/>
+                                        <color key="shadowColor" red="0.96078431610000004" green="0.96078431610000004" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <size key="shadowOffset" width="1" height="-1"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="DarkBlue"/>
                         <constraints>
-                            <constraint firstItem="a69-FR-fsm" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="3ZC-OI-Xoy"/>
-                            <constraint firstItem="a69-FR-fsm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="TQN-Ot-MBP"/>
+                            <constraint firstItem="TLZ-bM-hPs" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="EEt-6V-zuY"/>
+                            <constraint firstItem="TLZ-bM-hPs" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="KcV-dq-Zkt"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -40,6 +52,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_white_day_rain" width="36" height="36"/>
         <namedColor name="DarkBlue">
             <color red="0.35699999332427979" green="0.55699998140335083" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
