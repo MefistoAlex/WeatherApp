@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "compression-type" : "automatic",
       "filename" : "ic_white_day_bright.pdf",
       "idiom" : "universal",
       "scale" : "1x"
