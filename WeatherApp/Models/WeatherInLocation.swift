@@ -55,7 +55,7 @@ struct DailyWeather {
         }
     }
 
-    var modeWeather: Int {
+    var modeWeather: WeatherIcons {
         let weatherIdArray = details.map { $0.weatherId }
         var counterDict: [Int: Int] = [:]
         for id in weatherIdArray {
@@ -74,9 +74,10 @@ struct DailyWeather {
             }
         }
         if let result = returnArray.first {
-            return result
+            let icon = details.filter { $0.weatherId == result }.first?.weatherIcon
+            return icon ?? .brigthDay
         } else {
-            return 0
+            return .brigthDay
         }
     }
 }
@@ -121,26 +122,26 @@ struct WeatherDetailsData {
     }
 
     var weatherIcon: WeatherIcons {
-        let isDay: Bool = 6 ... 21 ~= hour  // time interval frow 21.00 to 6.00 is night
-       
+        let isDay: Bool = 6 ... 21 ~= hour // time interval frow 21.00 to 6.00 is night
+
         switch weatherId {
-        //thunder
-        case 200...232:
-            return  isDay ? .thunderDay: .thunderNight
-        //drizzle
-        case 300...302, 310, 311:
-            return isDay ? .rainDay: .rainNight
-        case 312...321:
-            return isDay ? .showerDay: .showerNight
-        //rain
-        case 500,501:
-            return isDay ? .rainDay: .rainNight
-        case 502...504, 520...522, 531:
-            return isDay ? .showerDay: .showerNight
-        //brigth
+        // thunder
+        case 200 ... 232:
+            return isDay ? .thunderDay : .thunderNight
+        // drizzle
+        case 300 ... 302, 310, 311:
+            return isDay ? .rainDay : .rainNight
+        case 312 ... 321:
+            return isDay ? .showerDay : .showerNight
+        // rain
+        case 500, 501:
+            return isDay ? .rainDay : .rainNight
+        case 502 ... 504, 520 ... 522, 531:
+            return isDay ? .showerDay : .showerNight
+        // brigth
         case 800:
             return isDay ? .brigthDay : .brigthNight
-        //cloudy
+        // cloudy
         case 801 ... 804:
             return isDay ? .cloudyDay : .cloudyNight
 
