@@ -7,7 +7,7 @@
 
 import Foundation
 protocol WeatherAPIServiceInterface {
-    func loadWeather(parameters: WeatherRequestParameters, completion: @escaping (_ responce: WeatherRequestResponse?, _ error: Error?) -> Void)
+    func loadWeather(parameters: WeatherRequestParameters, completion: @escaping (_ responce: WeatherInLocation?, _ error: Error?) -> Void)
 }
 
 final class WeatherAPIService: WeatherAPIServiceInterface {
@@ -17,14 +17,19 @@ final class WeatherAPIService: WeatherAPIServiceInterface {
         apiManager = AlamofireAPIManager()
     }
 
-    func loadWeather(parameters: WeatherRequestParameters, completion: @escaping (WeatherRequestResponse?, Error?) -> Void) {
+    func loadWeather(parameters: WeatherRequestParameters, completion: @escaping (WeatherInLocation?, Error?) -> Void) {
         apiManager.request(urlString: parameters.url,
                            method: .get,
                            dataType: WeatherRequestResponse.self,
                            headers: nil,
                            parameters: parameters.toDictionary) { responce, error in
-
-            completion(responce, error)
+            if let responce = responce {
+                let currentWeather = WeatherInLocation(from: responce)
+                completion(currentWeather, error)
+            } else {
+                completion(nil, error)
+            }
+            
         }
     }
 }
