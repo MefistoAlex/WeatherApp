@@ -15,6 +15,7 @@ class WeatherHeader: UIView {
     @IBOutlet var weatherImage: UIImageView!
     @IBOutlet var humidityLabel: UILabel!
     @IBOutlet var tempLabel: UILabel!
+    @IBOutlet var windSpeed: UILabel!
     @IBOutlet var windDirectionImage: UIImageView!
 
     // MARK: init
@@ -34,5 +35,13 @@ class WeatherHeader: UIView {
         addSubview(contentView)
         contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    }
+    func setWeather (_ weather: WeatherDetailsData) {
+        dayLabel.text = weather.day
+        humidityLabel.text = "\(weather.humidity)"
+        tempLabel.text = "\(weather.temp)°C"
+        windSpeed.text = "\(weather.windSpeed)"
+        windDirectionImage.image = UIImage(named: weather.windDirection.rawValue)
+        weatherImage.image = UIImage(named: weather.weatherIcon.rawValue)
     }
 }
