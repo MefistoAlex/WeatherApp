@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct WeatherInLocation {
     let city: String
     let weatherByDays: [DailyWeather]
@@ -89,14 +90,36 @@ struct WeatherDetailsData {
     let weatherId: Int
     let windSpeed: Double
     let windDeg: Int
-   
+
     var day: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EE, d MMM"
         return dateFormatter.string(from: date)
     }
-    
-    
+
+    var windDirection: WindDirection {
+        switch windDeg {
+        case 22 ... 67:
+            return .northWest
+        case 68 ... 112:
+            return .north
+        case 113 ... 158:
+            return .northEast
+        case 159 ... 204:
+            return .east
+        case 205 ... 250:
+            return .southEast
+        case 251 ... 296:
+            return .south
+        case 297 ... 342:
+            return .southWest
+        case 0 ... 21, 343 ... 360:
+            return .west
+        default:
+            return .north
+        }
+    }
+
     init(from weatherTimeStamp: WeatherTimeStamp) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
