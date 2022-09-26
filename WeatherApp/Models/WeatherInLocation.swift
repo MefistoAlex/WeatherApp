@@ -120,6 +120,35 @@ struct WeatherDetailsData {
         }
     }
 
+    var weatherIcon: WeatherIcons {
+        let isDay: Bool = 6 ... 21 ~= hour  // time interval frow 21.00 to 6.00 is night
+       
+        switch weatherId {
+        //thunder
+        case 200...232:
+            return  isDay ? .thunderDay: .thunderNight
+        //drizzle
+        case 300...302, 310, 311:
+            return isDay ? .rainDay: .rainNight
+        case 312...321:
+            return isDay ? .showerDay: .showerNight
+        //rain
+        case 500,501:
+            return isDay ? .rainDay: .rainNight
+        case 502...504, 520...522, 531:
+            return isDay ? .showerDay: .showerNight
+        //brigth
+        case 800:
+            return isDay ? .brigthDay : .brigthNight
+        //cloudy
+        case 801 ... 804:
+            return isDay ? .cloudyDay : .cloudyNight
+
+        default: return .brigthDay
+        }
+        // https://openweathermap.org/weather-conditions
+    }
+
     init(from weatherTimeStamp: WeatherTimeStamp) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
