@@ -19,7 +19,8 @@ struct WeatherRequestParameters {
             "lat": String(latitude),
             "lon": String(longitude),
             "appid": "997bcc6034d4a1cb7646db398555b7b1",
-//            "lang": language
+            "lang": language,
+            "units" : "metric"
         ]
     }
 }
