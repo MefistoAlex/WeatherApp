@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct WeatherRequestResponse : Codable {
+struct WeatherRequestResponse: Codable {
     let cod: String
     let message: Int
     let list: [WeatherTimeStamp]
