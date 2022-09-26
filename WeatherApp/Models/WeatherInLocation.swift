@@ -14,15 +14,13 @@ struct WeatherInLocation {
         city = weatherRequestResponce.city.name
         var dailyWeatherArray = [DailyWeather]()
         var weatherDataArray = [WeatherDetailsData]()
-        
         let calendar = Calendar.current
-        
         var dayStart = calendar.startOfDay(for: Date())
-    
+
         for weatherTimeStamp in weatherRequestResponce.list {
             let weatherDetails = WeatherDetailsData(from: weatherTimeStamp)
             let currentDayStart = calendar.startOfDay(for: weatherDetails.date)
-            
+
             if dayStart == currentDayStart {
                 weatherDataArray.append(weatherDetails)
             } else {
@@ -39,13 +37,47 @@ struct WeatherInLocation {
 struct DailyWeather {
     let date: Date
     let details: [WeatherDetailsData]
-    
+
     var dayOfWeek: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EE"
         return dateFormatter.string(from: date)
     }
 
+    var minmaxTemp: String {
+        let minTemp = details.min { $0.tempMin < $1.tempMin }?.tempMin
+        let maxTemp = details.max { $0.tempMax < $1.tempMax }?.tempMax
+        if let minTemp = minTemp, let maxTemp = maxTemp {
+            return "\(Int(maxTemp.rounded(.toNearestOrEven)))°/\(Int(minTemp.rounded(.toNearestOrEven)))°"
+        } else {
+            return ""
+        }
+    }
+
+    var modeWeather: Int {
+        let weatherIdArray = details.map { $0.weatherId }
+        var counterDict: [Int: Int] = [:]
+        for id in weatherIdArray {
+            if let oldVal = counterDict[id] {
+                counterDict[id] = oldVal + 1
+            } else {
+                counterDict[id] = 1
+            }
+        }
+        var returnArray: [Int] = []
+        if let max = counterDict.values.max() {
+            for pair in counterDict {
+                if pair.value == max {
+                    returnArray.append(pair.key)
+                }
+            }
+        }
+        if let result = returnArray.first {
+            return result
+        } else {
+            return 0
+        }
+    }
 }
 
 struct WeatherDetailsData {
@@ -70,7 +102,7 @@ struct WeatherDetailsData {
         windSpeed = weatherTimeStamp.wind.speed
         windDeg = weatherTimeStamp.wind.deg
     }
-    
+
     var hour: Int {
         Calendar.current.component(.hour, from: date)
     }
