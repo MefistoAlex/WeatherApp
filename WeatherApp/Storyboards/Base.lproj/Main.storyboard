@@ -199,6 +199,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="d8H-MD-HU0"/>
                     <connections>
+                        <outlet property="currentDayLabel" destination="4XG-R1-3Rr" id="Mzh-SM-Fc1"/>
+                        <outlet property="currentHumidityLabel" destination="r03-rF-A9f" id="0Vl-nh-SZ3"/>
+                        <outlet property="currentTempLabel" destination="lwf-WX-QNf" id="juB-VE-T1d"/>
+                        <outlet property="currentWeatherImage" destination="RGW-bA-ydB" id="uwL-aZ-SSo"/>
+                        <outlet property="currentWindDirectionImage" destination="Evb-yr-o9t" id="g14-hg-Fwd"/>
+                        <outlet property="currentWindSpeed" destination="uAr-R0-alK" id="WKs-L8-lWY"/>
                         <outlet property="tableView" destination="tUX-gm-6jL" id="QuZ-rs-b6t"/>
                     </connections>
                 </viewController>
