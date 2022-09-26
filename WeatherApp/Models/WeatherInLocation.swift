@@ -89,7 +89,14 @@ struct WeatherDetailsData {
     let weatherId: Int
     let windSpeed: Double
     let windDeg: Int
-
+   
+    var day: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EE, d MMM"
+        return dateFormatter.string(from: date)
+    }
+    
+    
     init(from weatherTimeStamp: WeatherTimeStamp) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
