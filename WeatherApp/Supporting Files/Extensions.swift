@@ -38,6 +38,6 @@ enum WeatherIcons: String {
 }
 
 enum Colors: String {
-case blue =  "Blue"
-case darkBlue = "DarkBlue"
+    case blue = "Blue"
+    case darkBlue = "DarkBlue"
 }

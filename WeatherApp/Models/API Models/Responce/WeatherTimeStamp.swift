@@ -11,5 +11,5 @@ struct WeatherTimeStamp: Codable {
     let main: Temperature
     let wind: Wind
     let weather: [Weather]
-    let dt_txt : String
+    let dt_txt: String
 }

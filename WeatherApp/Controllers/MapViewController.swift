@@ -12,9 +12,10 @@ import UIKit
 final class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Variable Declarations
 
+    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet private var mapView: MKMapView!
     var locationManager: CLLocationManager!
     var currentLocationStr = "Current location"
-    @IBOutlet private var mapView: MKMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,9 @@ final class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         mapView.showsScale = true
         mapView.showsCompass = true
         mapView.showsUserLocation = true
+        let search = UISearchController(searchResultsController: self)
+
+        navigationItem.searchController = search
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(mapDidTap))
         mapView.addGestureRecognizer(tapGesture)
@@ -40,7 +44,7 @@ final class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
-            if let  location = locationManager.location {
+            if let location = locationManager.location {
                 mapView.centerToLocation(location)
             }
         }
@@ -77,15 +81,16 @@ final class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         return currentLocationStr
     }
 }
+
 private extension MKMapView {
-  func centerToLocation(
-    _ location: CLLocation,
-    regionRadius: CLLocationDistance = 1000
-  ) {
-    let coordinateRegion = MKCoordinateRegion(
-      center: location.coordinate,
-      latitudinalMeters: regionRadius,
-      longitudinalMeters: regionRadius)
-    setRegion(coordinateRegion, animated: true)
-  }
+    func centerToLocation(
+        _ location: CLLocation,
+        regionRadius: CLLocationDistance = 1000
+    ) {
+        let coordinateRegion = MKCoordinateRegion(
+            center: location.coordinate,
+            latitudinalMeters: regionRadius,
+            longitudinalMeters: regionRadius)
+        setRegion(coordinateRegion, animated: true)
+    }
 }

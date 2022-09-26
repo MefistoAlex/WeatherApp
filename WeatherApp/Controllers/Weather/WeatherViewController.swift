@@ -78,7 +78,6 @@ final class WeatherViewController: UIViewController {
 
         tableView.rx.modelSelected(DailyWeather.self).bind { dailyWeather in
             self.weatherViewModel.currentDayWeather.onNext(dailyWeather.details[0])
-            self.weatherViewModel.currentDayWeather.onCompleted()
         }.disposed(by: disposeBag)
 
         // fetch items

@@ -29,7 +29,6 @@ final class WeatherAPIService: WeatherAPIServiceInterface {
             } else {
                 completion(nil, error)
             }
-            
         }
     }
 }

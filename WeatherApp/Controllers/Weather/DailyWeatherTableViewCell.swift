@@ -8,7 +8,6 @@
 import UIKit
 
 final class DailyWeatherTableViewCell: UITableViewCell {
-
     @IBOutlet private var dayTempLabel: UILabel!
     @IBOutlet private var dayLabel: UILabel!
     @IBOutlet private var weatherImage: UIImageView!
@@ -16,7 +15,6 @@ final class DailyWeatherTableViewCell: UITableViewCell {
     func setDayWeather(dailyWeather: DailyWeather) {
         dayLabel.text = dailyWeather.dayOfWeek
         dayTempLabel.text = dailyWeather.minmaxTemp
-        weatherImage.image = UIImage(named: dailyWeather.modeWeather.rawValue) 
-        
+        weatherImage.image = UIImage(named: dailyWeather.modeWeather.rawValue)
     }
 }
