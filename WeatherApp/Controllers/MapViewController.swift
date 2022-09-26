@@ -42,7 +42,7 @@ final class MapViewController: UIViewController, UIGestureRecognizerDelegate {
             locationManager.startUpdatingLocation()
             if let  location = locationManager.location {
                 mapView.centerToLocation(location)
-            } 
+            }
         }
     }
 
@@ -54,13 +54,13 @@ final class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         let locationCoordinale = mapView.convert(locationTouch, toCoordinateFrom: mapView)
         let pin = MKPointAnnotation()
         pin.coordinate = locationCoordinale
-        pin.title = "What weather is here?\n" + setUsersClosestLocation(mLattitude: locationCoordinale.latitude, mLongitude: locationCoordinale.longitude)
+        pin.title = "What weather is here?\n" + setUsersClosestLocation(lattitude: locationCoordinale.latitude, longitude: locationCoordinale.longitude)
         mapView.addAnnotation(pin)
     }
 
-    func setUsersClosestLocation(mLattitude: CLLocationDegrees, mLongitude: CLLocationDegrees) -> String {
+    func setUsersClosestLocation(lattitude: CLLocationDegrees, longitude: CLLocationDegrees) -> String {
         let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: mLattitude, longitude: mLongitude)
+        let location = CLLocation(latitude: lattitude, longitude: longitude)
 
         geoCoder.reverseGeocodeLocation(location) {
             placemarks, _ in
