@@ -132,13 +132,12 @@
                                     <constraint firstItem="WPK-Sn-sRT" firstAttribute="leading" secondItem="j3J-fy-ibY" secondAttribute="leading" constant="20" id="vhM-Ox-rJX"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tUX-gm-6jL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tUX-gm-6jL">
                                 <rect key="frame" x="0.0" y="341" width="395.33333333333331" height="503"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DailyForecastTableViewCell" rowHeight="150" id="Fzj-Sg-c7w" customClass="DailyForecastTableViewCell" customModule="WeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333332061767578" width="395.33333333333331" height="150"/>
+                                        <rect key="frame" x="0.0" y="50" width="395.33333333333331" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fzj-Sg-c7w" id="Jmx-if-WBa">
                                             <rect key="frame" x="0.0" y="0.0" width="395.33333333333331" height="150"/>
@@ -147,6 +146,9 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gBs-YN-Yk3">
                                                     <rect key="frame" x="0.0" y="0.0" width="395.33333333333331" height="150"/>
                                                     <color key="backgroundColor" name="Blue"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="raI-9e-CGU"/>
+                                                    </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="l5Y-w8-Uag">
                                                         <size key="itemSize" width="100" height="128"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -215,10 +217,11 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="collectionView" destination="gBs-YN-Yk3" id="bHX-Ei-lde"/>
+                                            <outlet property="contentView" destination="Jmx-if-WBa" id="hJt-NG-qOn"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DailyWeatherTableViewCell" id="fMT-eP-1Y0" customClass="DailyWeatherTableViewCell" customModule="WeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="205.33333206176758" width="395.33333333333331" height="56.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="200" width="395.33333333333331" height="56.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fMT-eP-1Y0" id="A1O-t6-hgR">
                                             <rect key="frame" x="0.0" y="0.0" width="395.33333333333331" height="56.333332061767578"/>
@@ -255,6 +258,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="joV-64-bK8" secondAttribute="trailing" constant="10" id="mOs-d6-tKi"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dayLabel" destination="gwV-P1-szO" id="qzi-6y-awW"/>
                                             <outlet property="dayTempLabel" destination="ecd-gs-g5m" id="i9Q-HH-YS9"/>
