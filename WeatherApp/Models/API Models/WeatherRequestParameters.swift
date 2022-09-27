@@ -24,3 +24,5 @@ struct WeatherRequestParameters {
         ]
     }
 }
+//https://openweathermap.org/forecast5
+//https://openweathermap.org/weather-conditions
