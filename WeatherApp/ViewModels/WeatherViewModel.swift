@@ -10,10 +10,18 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-class WeatherViewModel {
+final class WeatherViewModel {
+    
+   static let shared: WeatherViewModel = {
+        WeatherViewModel()
+    }()
+    
+    private init(){}
+    
     var city = PublishSubject<String>()
     var dailyWeather = PublishSubject<[DailyWeather]>()
-    var currentDayWeather = PublishSubject<WeatherDetailsData>()
+    var currentForecast = PublishSubject<WeatherDetailsData>()
+    var currentDayWeather = PublishSubject<[WeatherDetailsData]>()
 
     private lazy var weatherService: WeatherAPIServiceInterface = {
         WeatherAPIService()
@@ -39,7 +47,8 @@ class WeatherViewModel {
                 guard let responce = responce else { return }
                 self.dailyWeather.onNext(responce.weatherByDays)
                 self.city.onNext(responce.city)
-                self.currentDayWeather.onNext(responce.weatherByDays[0].details[0])
+                self.currentForecast.onNext(responce.weatherByDays[0].details[0])
+                self.currentDayWeather.onNext(responce.weatherByDays[0].details)
             }
         }
     }
