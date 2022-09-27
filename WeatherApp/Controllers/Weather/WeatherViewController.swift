@@ -65,23 +65,28 @@ final class WeatherViewController: UIViewController {
     }
 
     private func bindTableData() {
-        // bind items to the table
-        weatherViewModel.dailyWeather.bind(
-            to: tableView.rx.items(
-                cellIdentifier: String(describing: DailyWeatherTableViewCell.self),
-                cellType: DailyWeatherTableViewCell.self)
-        ) { _, item, cell in
-            cell.setDayWeather(dailyWeather: item)
+        weatherViewModel.dailyWeather.bind(to: tableView.rx.items) { tableView, index, element in
+            if index == 0 {
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: DailyForecastTableViewCell.self),
+                    for: IndexPath(row: index, section: 0)
+                ) as! DailyForecastTableViewCell
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: DailyWeatherTableViewCell.self),
+                    for: IndexPath(row: index, section: 0)
+                ) as! DailyWeatherTableViewCell
+                cell.setDayWeather(dailyWeather: element)
+                return cell
+            }
         }.disposed(by: disposeBag)
-
-       
-           // bind a model selected hendler
 
         tableView.rx.modelSelected(DailyWeather.self).bind { dailyWeather in
             self.weatherViewModel.currentForecast.onNext(dailyWeather.details[0])
+            self.weatherViewModel.currentDayWeather.onNext(dailyWeather.details)
         }.disposed(by: disposeBag)
 
-        // fetch items
         weatherViewModel.fetchItem()
     }
 
