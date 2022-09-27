@@ -77,6 +77,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B022AEC328E30B98005CC33B /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				B06F018728E1E76B00B9FA8E /* DailyWeatherTableViewCell.swift */,
+				B022AEBF28E2E3D6005CC33B /* DailyForecastTableViewCell.swift */,
+				B022AEC128E2E416005CC33B /* ForecastCollectionViewCell.swift */,
+			);
+			path = TableCells;
+			sourceTree = "<group>";
+		};
 		B04766D628DB6DF900EE5675 = {
 			isa = PBXGroup;
 			children = (
@@ -131,7 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				B06F018428E199EA00B9FA8E /* Request */,
-				B06F019028E23A2000B9FA8E /* Responce */,
+				B06F019028E23A2000B9FA8E /* Response */,
 			);
 			path = "API Models";
 			sourceTree = "<group>";
@@ -145,7 +155,7 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
-		B06F019028E23A2000B9FA8E /* Responce */ = {
+		B06F019028E23A2000B9FA8E /* Response */ = {
 			isa = PBXGroup;
 			children = (
 				B0B9CADF28DCC3ED008FB885 /* City.swift */,
@@ -154,7 +164,7 @@
 				B0B9CAE328DCC720008FB885 /* Weather.swift */,
 				B0B9CAE128DCC4F3008FB885 /* WeatherTimeStamp.swift */,
 			);
-			path = Responce;
+			path = Response;
 			sourceTree = "<group>";
 		};
 		B06F019128E23A7D00B9FA8E /* ViewModels */ = {
@@ -178,9 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				B04766E628DB6DF900EE5675 /* WeatherViewController.swift */,
-				B06F018728E1E76B00B9FA8E /* DailyWeatherTableViewCell.swift */,
-				B022AEBF28E2E3D6005CC33B /* DailyForecastTableViewCell.swift */,
-				B022AEC128E2E416005CC33B /* ForecastCollectionViewCell.swift */,
+				B022AEC328E30B98005CC33B /* TableCells */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
