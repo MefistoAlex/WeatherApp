@@ -29,6 +29,6 @@ final class DailyForecastTableViewCell: UITableViewCell {
             cell.setForecastWeather(item)
         }.disposed(by: disposeBag)
 
-        weatherViewModel.fetchItem()
+        weatherViewModel.fetchWeather()
     }
 }

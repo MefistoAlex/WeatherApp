@@ -29,10 +29,13 @@ final class WeatherViewModel {
 
     private var locationManager = LocationManager.shared
 
-    func fetchItem() {
+    func fetchWeather() {
         let curentLocation = locationManager.location
-        if let curentLocation = curentLocation {
-            let parameters = WeatherRequestParameters(latitude: curentLocation.coordinate.latitude, longitude: curentLocation.coordinate.longitude)
+        fetchWeather(in: curentLocation)
+    }
+    func fetchWeather(in location: CLLocation?) {
+        if let location = location {
+            let parameters = WeatherRequestParameters(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             weatherService.loadWeather(parameters: parameters) { responce, _ in
                 guard let responce = responce else { return }
                 self.dailyWeather.onNext(responce.weatherByDays)

@@ -65,7 +65,7 @@ final class WeatherViewController: UIViewController {
     }
 
     private func bindTableData() {
-        weatherViewModel.dailyWeather.bind(to: tableView.rx.items) { tableView, index, element in
+        weatherViewModel.dailyWeather.bind(to: tableView.rx.items) {tableView,index,element in
             if index == 0 {
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: String(describing: DailyForecastTableViewCell.self),
@@ -75,7 +75,7 @@ final class WeatherViewController: UIViewController {
             } else {
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: String(describing: DailyWeatherTableViewCell.self),
-                    for: IndexPath(row: index, section: 0)
+                    for:  IndexPath(row: index, section: 0)
                 ) as! DailyWeatherTableViewCell
                 cell.setDayWeather(dailyWeather: element)
                 return cell
@@ -87,7 +87,7 @@ final class WeatherViewController: UIViewController {
             self.weatherViewModel.currentDayWeather.onNext(dailyWeather.details)
         }.disposed(by: disposeBag)
 
-        weatherViewModel.fetchItem()
+        weatherViewModel.fetchWeather()
     }
 
     @objc private func locationSearch() {
