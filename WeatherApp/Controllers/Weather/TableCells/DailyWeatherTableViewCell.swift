@@ -12,6 +12,15 @@ final class DailyWeatherTableViewCell: UITableViewCell {
     @IBOutlet private var dayLabel: UILabel!
     @IBOutlet private var weatherImage: UIImageView!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        // Configure the view for the selected state
+    }
+
     func setDayWeather(dailyWeather: DailyWeather) {
         dayLabel.text = dailyWeather.dayOfWeek
         dayTempLabel.text = dailyWeather.minmaxTemp
