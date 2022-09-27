@@ -27,17 +27,7 @@ final class WeatherViewModel {
         WeatherAPIService()
     }()
 
-    private var locationManager = {
-        let locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-        }
-
-        return locationManager
-    }()
+    private var locationManager = LocationManager.shared
 
     func fetchItem() {
         let curentLocation = locationManager.location
