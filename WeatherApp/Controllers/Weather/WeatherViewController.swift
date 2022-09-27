@@ -11,7 +11,7 @@ import RxSwift
 import UIKit
 
 final class WeatherViewController: UIViewController {
-    private let weatherViewModel = WeatherViewModel()
+    private let weatherViewModel = WeatherViewModel.shared
     private var disposeBag = DisposeBag()
 
     // MARK: Outlets
@@ -50,7 +50,7 @@ final class WeatherViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.standardAppearance.configureWithTransparentBackground()
 
-        weatherViewModel.currentDayWeather.subscribe { dailyWeather in
+        weatherViewModel.currentForecast.subscribe { dailyWeather in
             if let element = dailyWeather.element {
                 self.currentDayLabel.text = element.day
                 self.currentHumidityLabel.text = "\(element.humidity)"
@@ -74,10 +74,11 @@ final class WeatherViewController: UIViewController {
             cell.setDayWeather(dailyWeather: item)
         }.disposed(by: disposeBag)
 
-        // bind a model selected hendler
+       
+           // bind a model selected hendler
 
         tableView.rx.modelSelected(DailyWeather.self).bind { dailyWeather in
-            self.weatherViewModel.currentDayWeather.onNext(dailyWeather.details[0])
+            self.weatherViewModel.currentForecast.onNext(dailyWeather.details[0])
         }.disposed(by: disposeBag)
 
         // fetch items
