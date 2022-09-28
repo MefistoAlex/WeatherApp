@@ -18,7 +18,11 @@ final class DailyWeatherTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
+        if selected {
+            tintColor = UIColor(named: Colors.blue.rawValue)
+        } else {
+            tintColor = .black
+        }
     }
 
     func setDayWeather(dailyWeather: DailyWeather) {
