@@ -7,38 +7,52 @@
 
 import CoreLocation
 import MapKit
+import RxCocoa
+import RxSwift
 import UIKit
 
-final class MapViewController: UIViewController, UIGestureRecognizerDelegate {
+final class MapViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
     // MARK: - Variable Declarations
+
     private let locationManager = LocationManager.shared
     private let weatherViewModel = WeatherViewModel.shared
-    private let searchController = UISearchController()
+    private let locationViewModel = LocationViewModel.shared
+    private let disposeBag = DisposeBag()
     private var currentLocation: CLLocation?
-    
+
     @IBOutlet private var mapView: MKMapView!
-    
-    //MARK: Lyfecycle
-    
+
+    // MARK: Lyfecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "DarkBlue")
 
+        locationManager.delegate = self
         currentLocation = locationManager.location
         mapView.showsScale = true
         mapView.showsCompass = true
         mapView.showsUserLocation = true
 
-        searchController.searchResultsUpdater = self
-        
-        navigationItem.searchController = searchController
+        locationViewModel.pin.subscribe { mapItem in
+            guard let element = mapItem.element else { return }
+            let location = CLLocation(
+                latitude: element.placemark.coordinate.latitude,
+                longitude: element.placemark.coordinate.longitude
+            )
+            self.setPin(location: location)
+            self.mapView.centerToLocation(location)
+        }.disposed(by: disposeBag)
 
-        // set right bar button
-        let seaarhcButton = UIButton(type: .system)
-        seaarhcButton.setImage(UIImage(named: NavigationImages.search.rawValue), for: .normal)
-        seaarhcButton.sizeToFit()
-        seaarhcButton.addTarget(self, action: #selector(searchButtonDidTap), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: seaarhcButton)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let locationSearchController = storyboard.instantiateViewController(withIdentifier: String(describing: LocationSearchViewController.self)) as! LocationSearchViewController
+        locationSearchController.mapView = mapView
+        let searchController = UISearchController(searchResultsController: locationSearchController)
+        searchController.searchResultsUpdater = locationSearchController
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.placeholder = "Search for places"
+
+        navigationItem.searchController = searchController
 
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.standardAppearance.configureWithTransparentBackground()
@@ -57,48 +71,29 @@ final class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         weatherViewModel.fetchWeather(in: currentLocation)
     }
 
-    @objc private func searchButtonDidTap() {
-    }
-
-    @objc private func mapDidTap(gestureRecognizer: UIGestureRecognizer) {
+    private func setPin(location: CLLocation) {
         if !mapView.annotations.isEmpty {
             mapView.removeAnnotations(mapView.annotations)
         }
+        let pin = MKPointAnnotation()
+        pin.coordinate = location.coordinate
+        pin.title = "What weather is here?"
+        currentLocation = location
+        mapView.addAnnotation(pin)
+    }
+
+    @objc private func mapDidTap(gestureRecognizer: UIGestureRecognizer) {
         let locationTouch = gestureRecognizer.location(in: mapView)
         let locationCoordinale = mapView.convert(locationTouch, toCoordinateFrom: mapView)
-        let pin = MKPointAnnotation()
-        pin.coordinate = locationCoordinale
-        pin.title = "What weather is here?"
         let location = CLLocation(
             latitude: locationCoordinale.latitude,
             longitude: locationCoordinale.longitude
         )
-        currentLocation = location
-        mapView.addAnnotation(pin)
-//        mapView.centerToLocation(location)
-    }
-
-    func setUsersClosestLocation(lattitude: CLLocationDegrees, longitude: CLLocationDegrees) -> String {
-        let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: lattitude, longitude: longitude)
-        var currentLocationStr:String = ""
-        geoCoder.reverseGeocodeLocation(location) {
-            placemarks, _ in
-            if let mPlacemark = placemarks {
-                if let dict = mPlacemark[0].addressDictionary as? [String: Any] {
-                    if let Name = dict["Name"] as? String {
-                        if let City = dict["City"] as? String {
-                            currentLocationStr = Name + ", " + City
-                        }
-                    }
-                }
-            }
-        }
-        return currentLocationStr
+        setPin(location: location)
     }
 }
 
-//MARK: Map View 
+// MARK: Map View
 
 private extension MKMapView {
     func centerToLocation(
@@ -110,13 +105,5 @@ private extension MKMapView {
             latitudinalMeters: regionRadius,
             longitudinalMeters: regionRadius)
         setRegion(coordinateRegion, animated: true)
-    }
-}
-
-// MARK: Search Results Updating
-
-extension MapViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        print("search")
     }
 }

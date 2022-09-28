@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in LocationSearchViewController.updateSearchResults(for:):LocationSearchViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "MapViewController.viewDidLoad():MapViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -10,6 +13,14 @@
             </PersistentString>
             <PersistentString
                value = "navigationItem.leftBarButtonItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in LocationSearchViewController.viewDidLoad():LocationSearchViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "elem.placemark.subtitle">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

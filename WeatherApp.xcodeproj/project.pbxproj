@@ -12,6 +12,8 @@
 		B022AEC528E317D1005CC33B /* DailyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022AEC428E317D1005CC33B /* DailyWeather.swift */; };
 		B022AEC728E31808005CC33B /* WeatherDetailsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022AEC628E31808005CC33B /* WeatherDetailsData.swift */; };
 		B022AECB28E32C59005CC33B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022AECA28E32C59005CC33B /* LocationManager.swift */; };
+		B022AECD28E34343005CC33B /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022AECC28E34343005CC33B /* LocationSearchViewController.swift */; };
+		B022AECF28E36108005CC33B /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022AECE28E36108005CC33B /* LocationViewModel.swift */; };
 		B04766E328DB6DF900EE5675 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04766E228DB6DF900EE5675 /* AppDelegate.swift */; };
 		B04766E528DB6DF900EE5675 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04766E428DB6DF900EE5675 /* SceneDelegate.swift */; };
 		B04766E728DB6DF900EE5675 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04766E628DB6DF900EE5675 /* WeatherViewController.swift */; };
@@ -39,6 +41,8 @@
 		B022AEC428E317D1005CC33B /* DailyWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeather.swift; sourceTree = "<group>"; };
 		B022AEC628E31808005CC33B /* WeatherDetailsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsData.swift; sourceTree = "<group>"; };
 		B022AECA28E32C59005CC33B /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		B022AECC28E34343005CC33B /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
+		B022AECE28E36108005CC33B /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		B04766DF28DB6DF900EE5675 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B04766E228DB6DF900EE5675 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B04766E428DB6DF900EE5675 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				B06F018E28E2043000B9FA8E /* WeatherViewModel.swift */,
+				B022AECE28E36108005CC33B /* LocationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 			children = (
 				B0B9CAD128DCA610008FB885 /* Weather */,
 				B0B9CACE28DC5672008FB885 /* MapViewController.swift */,
+				B022AECC28E34343005CC33B /* LocationSearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -273,11 +279,13 @@
 				B022AEC528E317D1005CC33B /* DailyWeather.swift in Sources */,
 				B0B9CAEA28DCCD7D008FB885 /* WeatherAPIService.swift in Sources */,
 				B04766E728DB6DF900EE5675 /* WeatherViewController.swift in Sources */,
+				B022AECF28E36108005CC33B /* LocationViewModel.swift in Sources */,
 				B0B9CAD928DCA994008FB885 /* AlamofireAPIManager.swift in Sources */,
 				B0B9CACF28DC5672008FB885 /* MapViewController.swift in Sources */,
 				B0B9CACD28DC445D008FB885 /* Extensions.swift in Sources */,
 				B0B9CADC28DCBC70008FB885 /* WeatherRequestParameters.swift in Sources */,
 				B022AEC028E2E3D6005CC33B /* DailyForecastTableViewCell.swift in Sources */,
+				B022AECD28E34343005CC33B /* LocationSearchViewController.swift in Sources */,
 				B022AECB28E32C59005CC33B /* LocationManager.swift in Sources */,
 				B0B9CADE28DCC276008FB885 /* WeatherRequestResponse.swift in Sources */,
 				B04766E328DB6DF900EE5675 /* AppDelegate.swift in Sources */,
